@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="todomvc"> 
+<head>   
+<meta charset="UTF-8">   
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">  
+<title>Angular | TodoMVC</title>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head> 
+
+<body ng-controller="TodomvcCtrl"> 
+<H1>Todos</H1>
+
+<!-- Add TODO -->
+<ul class="list-unstyled">
+<li>
+    <form ng-submit="add(newTodo)">
+        <div class="input-group">
+            <input type="text" ng-model="newTodo" class="form-control"
+                    placeholder="Type todos" autofocus>
+            <span class="input-group-btn">
+            <button class="btn btn-success" type="submit">Add</button>
+            </span>
+        </div>
+    </form>
+</li>
+</ul>
+
+<!-- TODO LIST -->
+<ul ng-repeat="todo in todos | filter:status" class="list-unstyled">
+<li class="todo-item">
+    <todo-item data="todo" on-remove="remove(todoId)"></todo-item>
+</li>
+</ul>
+
+<!-- Filter -->
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" ng-click="status={completed:true}">Completed</button>
+  <button type="button" ng-click="status={completed:false}">Active</button>
+  <button type="button" ng-click="status={}">All</button>
+  <button type="button" ng-click="clearCompleted()">Clear Completed</button>
+</div>
+
+<pre>{{ todos | json }}</pre>
+
+<script src="node_modules/angular/angular.js"></script>
+
+<script src="client/js/app.js"></script>
+
+<script src="client/js/controllers/TodomvcCtrl.js"></script>
+
+<script src="client/js/directives/todoItem.js"></script>
+
+<script src="client/js/services/todoStorage.js"></script>
+
+</body> 
+</html>
+
